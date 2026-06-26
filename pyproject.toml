@@ -1,0 +1,27 @@
+[project]
+name = "pybt"
+version = "0.1.0"
+description = "One-command backtesting harness for reproducible TradingView strategy verification"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Some558" }]
+keywords = ["backtesting", "tradingview", "verification", "quant"]
+dependencies = [
+  "backtesting>=0.6.5",
+  "dukascopy-python>=4.0.1",
+  "numpy>=2.0",
+  "pandas>=3.0",
+  "yfinance>=1.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/Some558/pybt"
+Repository = "https://github.com/Some558/pybt"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["pybt*"]

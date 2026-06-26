@@ -1,0 +1,13 @@
+# Python venv / cache
+.venv/
+__pycache__/
+*.pyc
+pybt/_cache/
+
+# Generated reports (keep examples)
+reports/*
+!reports/EXAMPLE.md
+!reports/example_*.md
+
+# OS
+.DS_Store
