@@ -87,7 +87,15 @@ def run_suite(
     # コスト感度
     cost = [(c.label, run_one(df, strat, params, c)) for c in sweep_grid(base_cost)]
 
-    # 方向
+    # 方向 — 戦略が direction/invert を宣言していないと run_one のパラメータ
+    # フィルタで無言に落ち、baseline の複製を「方向検定」と誤認する (偽の
+    # 方向ノイズ判定を含む)。検証ハーネスは fail-loud にする。
+    missing = [a for a in ("direction", "invert") if not hasattr(strat, a)]
+    if missing:
+        raise ValueError(
+            f"{strat.__name__} が {missing} を宣言していないため方向検定が成立しない。"
+            "戦略クラスに direction ('Long'/'Short'/'Both') と invert (bool) を実装すること"
+        )
     direction = [
         ("Long単独", run_one(df, strat, {**params, "direction": "Long"}, base_cost)),
         ("Short単独", run_one(df, strat, {**params, "direction": "Short"}, base_cost)),
